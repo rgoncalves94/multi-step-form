@@ -1,34 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { lazy } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { DefaultLayout } from "./components/layouts/DefaultLayout";
+import PersonalInfoPage from "./pages/PersonalInfoPage";
+const PlanPage = lazy(() => import("./pages/PlanPage"));
+const AddonsPage = lazy(() => import("./pages/AddonsPage"));
+const SummaryPage = lazy(() => import("./pages/SummaryPage"));
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <RouterProvider
+      router={createBrowserRouter([
+        {
+          path: "/",
+          element: <DefaultLayout />,
+          children: [
+            {
+              index: true,
+              path: "personal-info",
+              element: <PersonalInfoPage />,
+            },
+            {
+              path: "plan",
+              element: <PlanPage />,
+            },
+            { path: "addons", element: <AddonsPage /> },
+            { path: "summary", element: <SummaryPage /> },
+          ],
+        },
+      ])}
+      fallbackElement={<div>Failed to render routes</div>}
+    />
+  );
 }
 
-export default App
+export default App;

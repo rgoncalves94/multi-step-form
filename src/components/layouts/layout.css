@@ -1,0 +1,17 @@
+.multiform-layout {
+  margin: auto auto;
+  background-color: var(--neutral-color-container-background);
+  border-radius: var(--border-radius);
+  width: 400px;
+  height: 300px;
+  padding: var(--padding-default);
+}
+.multiform-layout .multiform-layout-container {
+  
+}
+.multiform-layout .multiform-layout-container .multiform-layout-container-navigator{
+  
+}
+.multiform-layout .multiform-layout-container .multiform-layout-container-form {
+
+}
